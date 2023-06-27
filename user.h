@@ -37,7 +37,6 @@ private:
     steady_timer timer_;
     bool has_partner_;
     std::shared_ptr<std::string> message_;
-
     std::chrono::steady_clock::time_point connection_time_;
     std::size_t message_count_ = 0;
     std::string secret_;

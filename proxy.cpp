@@ -76,9 +76,10 @@ void Proxy::doAccept() {
             if (!ec) {
                 std::string secret = "";
                 auto user = std::make_shared<User>(std::move(socket), shared_from_this(), secret);
-
- 
-
+                {
+                    std::lock_guard<std::mutex> lock(usersMutex_);
+                    users_.push_back(user);
+                }
                 if (userCount() == 1) {
                     user->initialize();
                 }
